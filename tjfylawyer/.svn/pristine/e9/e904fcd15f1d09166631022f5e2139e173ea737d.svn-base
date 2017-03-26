@@ -1,0 +1,19 @@
+package software.demo;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+public class CharsetTest {
+	public static void main(String args[]) throws IOException{
+		String s="案件基本信息（示例）";
+		
+		printBytes(s.getBytes("gb2312"));
+	}
+	
+	private static void printBytes(byte[] test) {
+		for (byte b : test) {
+			System.out.print(Integer.toBinaryString(b));
+		}
+		System.out.println();
+	}
+}

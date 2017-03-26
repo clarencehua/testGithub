@@ -1,0 +1,23 @@
+package software.bbs.data.dao.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import software.bbs.data.dao.ReplyDao;
+import software.bbs.data.dao.UserDao;
+import software.bbs.data.dataobject.Replyb;
+import software.bbs.data.dataobject.Userb;
+
+public class ReplyDaoImpl extends BaseDaoImpl<Replyb> implements ReplyDao {
+
+	@SuppressWarnings("unchecked")
+	
+	public List<Replyb> ListReplyByPostId(Integer postId) {
+		String hql = "from Replyb where postId = ?";
+		return getHibernateTemplate().find(hql,postId);
+	}
+
+
+
+	
+}

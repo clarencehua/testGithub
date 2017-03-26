@@ -1,0 +1,49 @@
+body{
+    margin: 0px;
+}
+
+.main_wrapper{
+	margin: 0 auto ;
+	width: 645px;
+}
+
+.header_wrapper{
+	background: url(../images/headtitle.png) 0 0 no-repeat;
+	width: 645px;
+	height: 82px;
+}
+
+.link_ul{
+	list-style: none;
+    padding-left: 0px;
+    text-align: center;
+}
+
+.link_ul li{
+	display: inline-block;
+    margin: 0 5px;
+}
+
+.form_wrapper{
+	margin-top: 50px;
+}
+
+.table_wrapper table{
+    margin: 0 auto;
+    line-height: 2;
+}
+
+.i_input{
+	width: 215px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.i_btn{
+	margin: 10px;
+	width: 85px;
+}
+
+.i_input_small{
+	width: 30px;
+}

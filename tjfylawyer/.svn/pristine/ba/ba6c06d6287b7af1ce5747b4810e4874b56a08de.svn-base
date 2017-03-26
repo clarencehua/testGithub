@@ -1,0 +1,64 @@
+package software.bbs.service.model;
+
+import java.util.Date;
+
+public class ReplyModel {
+	private Integer replyId; //回帖ID
+	private Integer floor; //楼层
+	private String title; // 标题
+	private Integer replyerId; //发帖人
+	private String content; // 发帖内容
+	private Date replyTime; //回复时间
+	private Integer postId; //表示该回贴所属哪条话题
+	private Integer isTop; //是否置顶
+	
+	public Integer getReplyId() {
+		return replyId;
+	}
+	public void setReplyId(Integer replyId) {
+		this.replyId = replyId;
+	}
+	public Integer getFloor() {
+		return floor;
+	}
+	public void setFloor(Integer floor) {
+		this.floor = floor;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Integer getReplyerId() {
+		return replyerId;
+	}
+	public void setReplyerId(Integer replyerId) {
+		this.replyerId = replyerId;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getReplyTime() {
+		return replyTime;
+	}
+	public void setReplyTime(Date replyTime) {
+		this.replyTime = replyTime;
+	}
+	public Integer getPostId() {
+		return postId;
+	}
+	public void setPostId(Integer postId) {
+		this.postId = postId;
+	}
+	public Integer getIsTop() {
+		return isTop;
+	}
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
+	}
+	
+}

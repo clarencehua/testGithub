@@ -1,0 +1,16 @@
+package software.bbs.service;
+
+import java.util.List;
+
+import software.bbs.data.dataobject.Userb;
+import software.bbs.service.model.UserContext;
+
+/**
+ * ÓÃ»§Service
+ * @author wzq
+ * 2015-7-5
+ */
+public interface UserService {
+	public void save(Userb userb);
+	
+}

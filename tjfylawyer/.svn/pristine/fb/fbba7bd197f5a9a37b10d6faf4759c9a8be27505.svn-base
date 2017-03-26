@@ -1,0 +1,45 @@
+$(function(){
+	$('#clddList').dataTable({
+		'bFilter' : true,
+		'bSort' : true,
+		'bLengthChange' : false,
+		'oLanguage' : {'sUrl' : 'resources/css/dataTables/dataTables.chinese.txt'},
+		'bSortClasses' : true,
+		'iDisplayLength' : 10,
+		'bRetrieve':true,
+		'bDestory':true,
+		'bPaginate': true,
+		'bInfo':true
+	});
+	if (window.PIE) {
+		$('.rounded').each(function() {
+			PIE.attach(this);
+		});
+	}
+	/**
+	 * 删除设两申请
+	 */
+	$(".delete_clsq").click(function(){
+		$(".tip").fadeIn(100);
+		$(".tip .tipinfo .tipright p").html("是否删除该车辆申请信息？");
+		var clsqbh=$(this).parent().parent().data("clsqbh");
+		$(".tip .sure").unbind("click");
+		$(".tip .sure").click(function(){
+			$.ajax({
+				type : "post",
+				url : "deleteClsq.aj",
+				dataType:"json",
+				data:{clsqbh:clsqbh},
+				success : function(data) {
+					$(".tip").fadeOut(100);
+					if(data=="1"){
+						$(".menuson li.active").click();
+					}else{
+						alert("车辆申请信息删除失败，请重试！");
+					}
+					
+				}
+			});
+		});
+	});
+});

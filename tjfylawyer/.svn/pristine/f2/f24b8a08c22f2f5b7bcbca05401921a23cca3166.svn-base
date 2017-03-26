@@ -1,0 +1,27 @@
+package software.bbs.service;
+
+import java.util.List;
+
+import software.bbs.data.dataobject.Postb;
+import software.bbs.data.dataobject.Replyb;
+import software.bbs.service.model.PostModel;
+
+
+public interface PostService {
+	
+	/**
+	 * 得到所有的话题信息
+	 * @return
+	 */
+	public List<PostModel> findObjects();
+	
+	/**
+	 * 根據postId找出post表
+	 * @param postId
+	 * @return
+	 */
+	public Postb findPostByPostId(Integer postId);
+	
+	public void updatePostb(Postb postb);
+
+}

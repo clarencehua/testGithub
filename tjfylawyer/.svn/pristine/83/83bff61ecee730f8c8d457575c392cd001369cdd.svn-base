@@ -1,0 +1,187 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>天津高院信息化意见箱</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/index.css">
+    <script type="text/javascript" src="resources/js/moment.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
+    <style>
+    li{
+    	list-style-type:none;
+    	line-height:27px;
+    }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="title">
+        <div id="current-time" style="float: left; margin-top: 2px;">欢迎登录天津最高院论坛，现在的时间是</div>
+        <div class="buttons" style="float: right;">
+            <div style="margin-right: 20px;"><span class="icon"
+                                                   style="background: url('resources/img/star.png') no-repeat"></span><span
+                    class="label">收藏本页</span></div>
+            <div><span class="icon" style="background: url('resources/img/home.png') no-repeat"></span><span
+                    class="label">设为首页</span></div>
+        </div>
+    </div>
+    <div class="logo">
+        <div style="background: url('resources/img/logo.png') no-repeat; height: 121px; width: 1133px; margin: auto;"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="tz" style="background: url('resources/img/tz-back.png') no-repeat;font-size:15px;font-family:'宋体Regular';">
+    	<ul style="padding-left: 20px;padding-right: 20px;">
+    		<li> 全院干警：</li>
+    		<li>&nbsp;&nbsp;在院党组高度关注和大力推动/机关各部门积极支持和密切配合之下，我院信息化建设取得了很大成绩，但在功能完善和用户体验等方面还存在很多需要改进提升之处。</li>
+    		<li>&nbsp;&nbsp;为提供更好的信息化服务，现开通“信息化建设工作意见箱”，欢迎全院干警结合自己的实际感受，针对信息化建设总体规划和应用系统功能改进等各方面工作提出意见和建议。敬请大家知无不言，言无不尽。信息中心将认真收集和梳理大家的宝贵意见和建议，及时研究并落实整改。</li>
+    		<li>&nbsp;&nbsp; &nbsp;谢谢大家的支持！ </li>
+    		<li style="padding-left:900px">信息中心</li>
+    		<li style="padding-left:885px">2016-07-04</li>
+    	</ul>
+    </div>
+    <div class="page-news">
+        <img src="resources/img/page.png" style="float: left;">
+        <a href="main.do?" target="_blank" style="float: right;"><img src="resources/img/news-up.png"/></a>
+    </div>
+    <div class="news-box">
+        <div class="header-wrapper"><span>天津高院信息化意见箱</span></div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-left: 1px solid #c5c5c5;"></th>
+                    <th>主题</th>
+                    <th>主题作者</th>
+                    <th style="width: 120px;">回复/查看</th>
+                    <th style="border-right: 1px solid #c5c5c5;width: 120px;">最后发表</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+              <c:forEach items="${postList}" var="pt">
+                <tr style="font-size:14px">
+                	<td style="width:35px;border: 1px solid grey;text-align: center;">
+	                	<c:choose>
+	                		<c:when test="${pt.readRs>100}">
+	                			<img src="resources/img/rmht.png"/>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<img src="resources/img/zcht.png"/>
+	                		</c:otherwise>
+	                	</c:choose>
+                	  </td>
+                	<td style="width:35px;border: 1px solid grey;text-align: center;">
+	                	<c:choose>
+							<c:when test="${pt.solveState==0}">
+								<img src="resources/img/wjj.png"/>
+								</c:when>
+							 <c:when test="${pt.solveState==1}">
+								<img src="resources/img/yjj.png"/>
+							</c:when>
+							<c:when test="${pt.solveState==2}">
+								<img src="resources/img/jjz.png"/>
+							</c:when>
+							<c:otherwise>
+						    	<img src="resources/img/zbjj.png"/>   
+						    </c:otherwise> 
+						</c:choose> 
+                	</td>
+                    <td style="border: 1px solid grey;">
+                    	<c:choose>
+	                    	<c:when test="${pt.isTop==1}">
+	                    		<img src="resources/img/top-subject.png"/>
+	                    	</c:when>
+                    	</c:choose>
+                    	 [${pt.system}] [${pt.type}] <a href="showWz.do?postId=${pt.postId}" style="color: black;">${pt.title}</a>
+                    </td>
+                    <td class="author"><span>${pt.author}</span><span class="time">${pt.postTime}</span></td>
+                    <td class="reply">${pt.replyRs}/${pt.readRs}</td>
+                    <td class="last-reply"><span class="time">${pt.postTime}</span><span>by${pt.author}</span></td>
+                </tr>
+              </c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-news">
+        <img src="resources/img/page.png" style="float: left;">
+        <div class="news-button" style="background: url('resources/img/news-down.png') no-repeat;"></div>
+    </div>
+    <div class="bottom-buttons">
+        <div><img src="resources/img/rmht.png"><span>热门话题</span></div>
+        <div><img src="resources/img/zcht.png"><span>正常话题</span></div>
+        <div><img src="resources/img/gbht.png"><span>关闭话题</span></div>
+        <div><img src="resources/img/wjj.png"><span>未解决</span></div>
+        <div><img src="resources/img/yjj.png"><span>已解决</span></div>
+        <div><img src="resources/img/jjz.png"><span>解决中</span></div>
+        <div><img src="resources/img/zbjj.png"><span>暂不解决</span></div>
+        <select class="sort-select">
+            <option>按回复时间排序</option>
+        </select>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="buttons">
+        <ul id="foot-ul">
+            <li>
+                <small>设为首页</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>加入收藏</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>联系我们</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>网站管理</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>信息化维护</small>
+            </li>
+        </ul>
+    </div>
+    <div class="plain-text">
+        <small>民意沟通信箱: TJGY_TG@CHINACOURT.ORG</small>
+    </div>
+    <div class="plain-text">
+        <small>天津高级人民法院版权所有，未经协议授权，禁止下载使用或建立镜像</small>
+    </div>
+    <div class="plain-text">
+        <small>COPYRIGHT@2002-2016 BY CHINACOURT.ORG ALL RIGHTS RESERVED</small>
+    </div>
+    <div class="plain-text">
+        <small>REPRODUCTION IN WHOLE OR IN PART WITHOUT PERMISSION IS PROHIBITED</small>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setCurrentTime();
+    });
+    function setCurrentTime() {
+        var ct = moment().format('YYYY年MM月DD日 HH:mm');
+        $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        setInterval(function () {
+            var ct = moment().format('YYYY年MM月DD日 HH:mm');
+            $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        }, 1000);
+    }
+</script>
+</body>
+</html>

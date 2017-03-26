@@ -1,0 +1,269 @@
+$(function(){
+	$tree_size=0;
+	/*zTree*/
+	var setting = {
+		edit: {
+			drag: {
+				autoExpandTrigger: true,
+				prev: dropPrev,
+				inner: dropInner,
+				next: dropNext
+			},
+			enable: true,
+			showRemoveBtn: showRemoveBtn,
+			removeTitle:"删除",
+			showRenameBtn: false
+		},
+		view:{
+			showLine:false,
+			showIcon:true,
+			addHoverDom: addHoverDom,
+			removeHoverDom: removeHoverDom
+		},
+		data: {
+			simpleData: {
+				enable: true
+			},
+			keep:{
+				parent:true
+			}
+		},
+		callback: {
+			beforeDrag: beforeDrag,
+			beforeDrop: beforeDrop,
+			beforeDragOpen: beforeDragOpen,
+			beforeRemove:beforeRemove,
+			onDrag: onDrag,
+			onDrop: onDrop,
+			onExpand: onExpand,
+			onRemove:onRemove
+		}
+	};
+	var data=[
+		{id:1,pId:0,name:"正卷",open:true,drag:false,isParent:true,dropInner:false},
+		{id:11,pId:1,name:"立案审批表(2)",drag:false,isParent:true},
+		{id:12,pId:1,name:"起诉状、上诉状、抗诉书、案件移送函等表明案件来源的材料(0)",drag:false,isParent:true},
+		{id:111,pId:11,name:"test1", dropInner:false, dropRoot:false,path:"resources/img/1.jpg"},
+		{id:112,pId:11,name:"test2", dropInner:false, dropRoot:false,path:"resources/img/2.jpg"},
+		{id:13,pId:1,name:"原审人民法院裁判文书(1)",drag:false,isParent:true},
+		{id:131,pId:13,name:"test3", dropInner:false, dropRoot:false,path:"resources/img/3.jpg"},
+		{id:14,pId:1,name:"受理通知书、应诉通知书及送达回证或者其他送达凭证(0)",drag:false,isParent:true},
+		{id:15,pId:1,name:"答辩状及送达回证或者其他送达凭证(0)",drag:false,isParent:true},
+		{id:16,pId:1,name:"诉讼费收取手续(0)",drag:false,isParent:true},
+		{id:17,pId:1,name:"送卷函、调卷函(0)",drag:false,isParent:true},
+		{id:18,pId:1,name:"当事人身份证明、授权委托书(0)",drag:false,isParent:true},
+		{id:19,pId:1,name:"调查、询问、讯问笔录、调查取证材料(0)",drag:false,isParent:true},
+		{id:10,pId:1,name:"当事人提供的证据材料(0)",drag:false,isParent:true},
+		{id:111,pId:1,name:"诉前保全、财产保全材料(0)",drag:false,isParent:true},
+		{id:112,pId:1,name:"司法裁定材料(0)",drag:false,isParent:true},
+		{id:113,pId:1,name:"传票、提押票(0)",drag:false,isParent:true},
+		{id:114,pId:1,name:"开庭通知、公告、庭审笔录(0)",drag:false,isParent:true},
+		{id:115,pId:1,name:"代理词、辩护词、被告人陈述词(0)",drag:false,isParent:true},
+		{id:116,pId:1,name:"延长审理期限审批表(0)",drag:false,isParent:true},
+		{id:117,pId:1,name:"撤诉书(0)",drag:false,isParent:true},
+		{id:118,pId:1,name:"判决书、裁定书、调解书、决定书、司法建议书和其他法律文书正本及送达回证或者其他送达凭证(0)",drag:false,isParent:true},
+		{id:119,pId:1,name:"宣判公告、宣判笔录、委托宣判函(0)",drag:false,isParent:true},
+		{id:120,pId:1,name:"死刑执行命令(0)",drag:false,isParent:true},
+		{id:121,pId:1,name:"物证处理材料(0)",drag:false,isParent:true},
+		{id:122,pId:1,name:"妨碍诉讼的强制措施材料(0)",drag:false,isParent:true},
+		{id:123,pId:1,name:"民事、行政执行材料(0)",drag:false,isParent:true},
+		{id:124,pId:1,name:"案件移送函存根、退卷函、退卷函存根、上级人民法院裁判文书正本(0)",drag:false,isParent:true},
+		{id:125,pId:1,name:"其他诉讼文书材料(0)",drag:false,isParent:true},
+
+		{id:2,pId:0,name:"副卷",open:true,drag:false,isParent:true,dropInner:false},
+		{id:21,pId:2,name:"阅卷笔录(0)",drag:false,isParent:true},
+		{id:22,pId:2,name:"案件审理报告(0)",drag:false,isParent:true},
+		{id:23,pId:2,name:"合议庭评议案件笔录(0)",drag:false,isParent:true},
+		{id:24,pId:2,name:"审判委员会讨论案件记录(0)",drag:false,isParent:true},
+		{id:25,pId:2,name:"延长审理期限的申请和批示材料(0)",drag:false,isParent:true},
+		{id:26,pId:2,name:"判决书、裁定书、调解书、决定书、司法建议书和其他法律文书原本(0)",drag:false,isParent:true},
+		{id:27,pId:2,name:"执行死刑照片和其他执行死刑材料(0)",drag:false,isParent:true},
+		{id:28,pId:2,name:"其他不宜对外公开的材料(0)",drag:false,isParent:true}
+	];
+	function showRemoveBtn(treeId, treeNode) {
+		var result_level2=treeNode.level==2 && treeNode.getParentNode().getParentNode().name!="回收站";
+		return result_level2;
+	}
+	function dropPrev(treeId, nodes, targetNode) {
+		var pNode = targetNode.getParentNode();
+		if (pNode && pNode.dropInner === false) {
+			return false;
+		} else {
+			for (var i=0,l=curDragNodes.length; i<l; i++) {
+				var curPNode = curDragNodes[i].getParentNode();
+				if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	function dropInner(treeId, nodes, targetNode) {
+		if (targetNode && targetNode.dropInner === false) {
+			return false;
+		} else {
+			for (var i=0,l=curDragNodes.length; i<l; i++) {
+				if (!targetNode && curDragNodes[i].dropRoot === false) {
+					return false;
+				} else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter === false) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	function dropNext(treeId, nodes, targetNode) {
+		var pNode = targetNode.getParentNode();
+		if (pNode && pNode.dropInner === false) {
+			return false;
+		} else {
+			for (var i=0,l=curDragNodes.length; i<l; i++) {
+				var curPNode = curDragNodes[i].getParentNode();
+				if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	var log, className = "dark", curDragNodes, autoExpandNode;
+	function beforeDrag(treeId, treeNodes) {
+		className = (className === "dark" ? "":"dark");
+		for (var i=0,l=treeNodes.length; i<l; i++) {
+			if (treeNodes[i].drag === false) {
+				curDragNodes = null;
+				return false;
+			} else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) {
+				curDragNodes = null;
+				return false;
+			}
+		}
+		curDragNodes = treeNodes;
+		return true;
+	}
+	function beforeDragOpen(treeId, treeNode) {
+		autoExpandNode = treeNode;
+		return true;
+	}
+	function beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+		className = (className === "dark" ? "":"dark");
+		if(targetNode.level==0)
+			return false;
+		return true;
+	}
+	function beforeRemove(treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("tree_index");
+		zTree.selectNode(treeNode);
+		return confirm("确认把图片" + treeNode.name + "移送到回收站吗？");
+	}
+	function onDrag(event, treeId, treeNodes) {
+		className = (className === "dark" ? "":"dark");
+	}
+	function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+		className = (className === "dark" ? "":"dark");
+		updateType();
+		$("#btn_ok").show();
+		$("#btn_reset_template").hide();
+	}
+	function onRemove(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("tree_index");
+		var node=zTree.getNodesByFilter(filterHsz, true);
+//		zTree.moveNode(node,treeNode,"inner");
+		zTree.removeNode(treeNode);
+		treeNode.pId=node.id;
+		zTree.addNodes(node,treeNode);
+		updateType();
+		$("#btn_ok").show();
+		$("#btn_reset_template").hide();
+	}
+	
+	function onExpand(event, treeId, treeNode) {
+		if (treeNode === autoExpandNode) {
+			className = (className === "dark" ? "":"dark");
+		}
+	}
+	var newCount = 1;
+	function addHoverDom(treeId, treeNode) {
+		if(treeNode.level!=2){
+			if(treeNode.level==1 && treeNode.children && treeNode.children.length!=0 && treeNode.getParentNode().name!="回收站"){
+				var sObj = $("#" + treeNode.tId + "_span");
+				if (treeNode.editNameFlag || $("#removeAllBtn_"+treeNode.tId).length>0) return;
+				var addStr='<span class="button removeAll" id="removeAllBtn_'+treeNode.tId+
+					'" title="清空文件夹" onfocus="this.blur();"></span>';
+				sObj.after(addStr);
+				var btn = $("#removeAllBtn_"+treeNode.tId);
+				function removeAll(treeNode,zTree,node){
+					var nodes=treeNode.children;
+					for(var i in nodes){
+						var tempNode=nodes[i];
+//						zTree.removeNode(tempNode);
+						tempNode.pId=node.pId;
+						zTree.addNodes(node,tempNode,true);
+					}
+					zTree.removeChildNodes(treeNode);
+				}
+				if(btn)
+					btn.bind("click",function(){
+						if(confirm("确认清空文件夹\""+treeNode.name+"\"下的所有图片吗？")){
+							var zTree = $.fn.zTree.getZTreeObj("tree_index");
+							var node=zTree.getNodesByFilter(filterHsz, true);
+							removeAll(treeNode, zTree, node);
+							updateType();
+							$("#btn_ok").show();
+							$("#btn_reset_template").hide();
+						}
+					});
+			}else
+				return false;
+		}else{
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#overlookBtn_"+treeNode.tId).length>0) return;
+			var addStr = "<span class='button overlook' id='overlookBtn_" + treeNode.tId
+				+ "' title='查看' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			var btn = $("#overlookBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", function(){
+				$(".popup_img_wrapper").html("<img class='popup_img' />");
+				$(".popup_img").prop("src","createImg.do?wjid="+treeNode.wjid);
+				$(".popup_img").css("width","500px");
+				$(".popup_img").css("height","600px");
+				$(".popup_img").css("margin-top",(($("body").height()-$(".popup_img").height())/2)+"px");
+				$(".popup_img").css("margin-left",(($("body").width()-$(".popup_img").width())/2)+"px");
+				$(".popup_img").focus();
+				$(".popup_div").show();
+			});
+		}
+	};
+	function removeHoverDom(treeId, treeNode) {
+		$("#overlookBtn_"+treeNode.tId).unbind().remove();
+		$("#removeAllBtn_"+treeNode.tId).unbind().remove();
+	};
+	function updateType() {
+		var zTree = $.fn.zTree.getZTreeObj("tree_index");
+		var nodes = zTree.getNodesByParam("level","1");
+		for (var i=0, l=nodes.length; i<l; i++) {
+			var num = nodes[i].children ? nodes[i].children.length : 0;
+			var node_name=nodes[i].name.substring(0,nodes[i].name.lastIndexOf("("));
+			nodes[i].name = node_name+"("+num+")";
+			if(num!=0)
+				nodes[i].check_Child_State=0;
+			zTree.updateNode(nodes[i]);
+		}
+	}
+	function filter(node){
+		return (node.level==1 && node.check_Child_State !=-1 && node.children && node.children.length>0);
+	}
+	/*获得回收站的二级目录*/
+	function filterHsz(node){
+		return (node.level==1 && node.getParentNode().name=="回收站");
+	}
+	$.fn.zTree.init($("#tree_index"), setting, data);
+	$(".popup_div").hide();
+	$(".popup_div").click(function(){
+		$(this).hide();
+	});
+	
+	
+	
+});

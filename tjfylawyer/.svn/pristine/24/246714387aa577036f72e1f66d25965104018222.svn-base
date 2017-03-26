@@ -1,0 +1,60 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册</title>
+	<link rel="stylesheet" href="resources/css/register.css" type="text/css">
+</head>
+<body>
+<div class="main_wrapper">
+	<div class="header_wrapper"></div>
+	<div class="link_list">
+		<ul class="link_ul">
+			<li><a href="login.do" class="i_a">Login</a></li>
+			<li><a href="register.do" class="i_a">Register</a></li>
+			<li><a href="logoff.do" class="i_a">Log off</a></li>
+			<li><a href="javascript:void(0);" class="i_a">My Profile</a></li>
+			<li><a href="showAllUsers.do" class="i_a">Watch List</a></li>
+			<li><a href="javascript:void(0);" class="i_a">Order Cancellation</a></li>
+			<li><a href="javascript:void(0);" class="i_a">Search</a></li>
+		</ul>
+	</div>
+	<div class="form_wrapper">
+		<form action="javascript:void(0);" id="register_form" method="post">
+			<div class="table_wrapper">
+				<table>
+					<tr>
+						<td><span class="table_title">姓名</span></td>
+						<td><input type="text" class="i_input" name="username"></td>
+					</tr>
+					<tr>
+						<td><span class="table_title">密码</span></td>
+						<td><input type="password" class="i_input" name="password"></td>
+					</tr>
+					<tr>
+						<td><span class="table_title">密码确认</span></td>
+						<td><input type="password" class="i_input" name="retryPass"></td>
+					</tr>
+					<tr>
+						<td><span class="table_title">性别</span></td>
+						<td><input type="radio" class="i_radio" name="sex" value="1" checked>男&nbsp;&nbsp;&nbsp;<input type="radio" class="i_radio" name="sex" value="2">女</td>
+					</tr>
+					<tr>
+						<td><span class="table_title">电子邮箱</span></td>
+						<td><input type="text" class="i_input" name="email"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" class="i_btn" value="提交"><input type="reset" class="i_btn" value="重置"></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="resources/js/jquery/jquery-1.9.1.js"></script>
+<script src="resources/js/jquery/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" src="resources/js/register.js"></script>
+</html>

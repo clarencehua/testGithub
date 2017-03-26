@@ -1,0 +1,465 @@
+body {
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+a:hover {
+    color: red;
+}
+
+.header {
+    background: #282828;
+}
+
+.header .title {
+    height: 25px;
+    width: 1000px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    font-size: 13px;
+    font-family: serif;
+}
+
+.header .title .buttons div {
+    display: inline-block;
+}
+
+.header .title .buttons div .icon {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+}
+
+.header .title .buttons div .label {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+}
+
+.header .logo {
+    background: #edece6;
+    height: 121px;
+}
+
+.container {
+    width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+
+.container .tz {
+    background: url("resources/img/tz-back.png") no-repeat;
+    width: 1000px;
+    height: 236px;
+    /* padding-left: 10px; */
+    padding-top: 1px;
+    /* padding-right: 20px; */
+    font-size: 15px;
+}
+
+.container .tz .p{
+    
+    width: 969px;
+    
+}
+
+.container .page-news {
+    margin-top: 15px;
+    height: 28px;
+}
+
+.container .news-button {
+    height: 27px;
+    width: 116px;
+    cursor: pointer;
+}
+
+.container .news-box {
+    margin-top: 15px;
+}
+
+.container .news-box .header-wrapper {
+    height: 30px;
+    background: #87040a;
+}
+
+.container .news-box .header-wrapper span {
+    color: white;
+    position: relative;
+    top: 6px;
+    left: 19px;
+    font-size: 15px;
+    font-family: serif;
+    font-weight: bold;
+}
+
+.container .news-box table {
+    width: 100%;
+}
+
+.container .news-box table th {
+    border: 1px solid #c5c5c5;
+    border-left: none;
+    border-right: 1px solid white;
+    height: 35px;
+    font-size: 15px;
+    font-family: serif;
+    background: #c5c5c5;
+    color: white;
+}
+
+.container .news-box table td {
+    height: 50px;
+    border: 1px solid #c5c5c5;
+    border-left: none;
+    border-top: none;
+    background: #f6f6f6;
+}
+
+.container .news-box table td.icon {
+    width: 35px;
+    text-align: center;
+}
+
+.container .news-box table td.icon.first {
+    border-left: 1px solid #c5c5c5;
+}
+
+.container .news-box table td.subject {
+    padding-left: 10px;
+}
+
+.container .news-box table td.subject img {
+    position: relative;
+    top: 3px;
+}
+
+.container .news-box table td.subject span.top {
+    color: #87040a;
+    margin-left: 12px;
+}
+
+.container .news-box table td.subject span {
+    cursor: pointer;
+}
+
+.container .news-box table td.subject span:hover {
+    color: red;
+}
+
+.container .news-box table td.author {
+    padding-left: 8px;
+    width: 110px;
+}
+
+.container .news-box table td.author span {
+    display: block;
+    color: #595959;
+    font-size: 13px;
+}
+
+.container .news-box table td.author span.time {
+    margin-top: 3px;
+}
+
+.container .news-box table td.reply {
+    width: 110px;
+    text-align: center;
+    color: #595959;
+}
+
+.container .news-box table td.last-reply {
+    padding-left: 8px;
+    width: 110px;
+}
+
+.container .news-box table td.last-reply span {
+    display: block;
+    color: #595959;
+    font-size: 13px;
+}
+
+.container .news-box table td.last-reply span.time {
+    margin-top: 3px;
+}
+
+.container .bottom-buttons {
+    border: 1px solid #c5c5c5;
+    margin-top: 15px;
+    background: #f6f6f6;
+    height: 50px;
+}
+
+.container .bottom-buttons > div {
+    display: inline-block;
+    position: relative;
+    top: 16px;
+    font-size: 15px;
+    color: #595959;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.container .bottom-buttons > div:hover {
+    color: red;
+}
+
+.container .bottom-buttons > div img {
+    position: relative;
+    top: 3px;
+    margin-right: 2px;
+}
+
+.container .bottom-buttons > .sort-select {
+    position: relative;
+    margin-left: 135px;
+    top: 13px;
+}
+
+.footer {
+    background: #282828;
+    height: 200px;
+    padding-top: 10px;
+    margin-top: 20px;
+    color: white;
+}
+
+.footer div {
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+    font-family: serif;
+}
+
+.footer div.plain-text {
+    width: 550px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#foot-ul {
+    list-style: none;
+}
+
+#foot-ul li {
+    display: inline;
+}
+
+#foot-ul li.seprator {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer .buttons {
+    height: 20px;
+    width: 520px;
+}
+
+.current-location {
+    height: 35px;
+    background: #87040a;
+    color: white;
+}
+
+.current-location .current-lv {
+    color: #ffb5b5;
+}
+
+.current-location .current-lv:hover {
+    color: red;
+}
+
+.page-news .buttons-group > div {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.content {
+    margin-top: 15px;
+}
+
+.content .title-info {
+    letter-spacing: 0;
+}
+
+.content .title-info > div {
+    display: inline-block;
+    height: 45px;
+    border: 1px solid #c5c5c5;
+    border-top: none;
+}
+
+.content .post{
+    margin-bottom: 10px;
+    border-top: 1px solid #c5c5c5;
+}
+
+.content .post .left {
+	float:left;
+    width: 304px;
+    border-right: none;
+}
+
+.content .post .right {
+    width: 697px;
+    margin-left: -4px;
+}
+
+.content .title-info .post-time > div {
+    position: relative;
+    top: 15px;
+    left: 20px;
+}
+
+.content .title-info .reply-time .time {
+    width: 250px;
+    position: relative;
+    top: 15px;
+    left: 20px;
+}
+
+.content .title-info .reply-time .floor {
+    position: relative;
+    left: -15px;
+}
+
+.content .post-content > div {
+    display: inline-block;
+    height: 260px;
+    border: 1px solid #c5c5c5;
+    border-top: none;
+}
+
+.content .post .post-content .name {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100px;
+    position: relative;
+    top: 18px;
+    left: 22px;
+}
+
+.content .post .post-content .left {
+    min-height: 261px;
+    width: 298px;
+}
+
+.content .post .post-content > table {
+    border-spacing: 0;
+    width: 1000px;
+    border: 1px solid #c5c5c5;
+}
+
+.content .post .post-content .avatar {
+    width: 108px;
+    height: 108px;
+    position: relative;
+    top: 30px;
+    left: 21px;
+}
+
+.poster-lv {
+    position: relative;
+    top: 40px;
+    left: 14px;
+    color: #87040a;
+}
+
+.post-num {
+    position: relative;
+    top: 52px;
+    left: 23px;
+    font-size: 13px;
+    font-family: "Microsoft YaHei";
+}
+
+.lv-logo {
+    display: inline-block;
+    height: 17px;
+    width: 100px;
+    margin-left: 5px;
+}
+
+.content .post .reply-content.right {
+    width: 655px;
+    margin-left: 0;
+}
+
+span.subject-logo {
+    background: url("img/subject.png") no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 17px;
+    position: relative;
+    top: 5px;
+    left: 6px;
+}
+
+.post-content-footer > div {
+    position: relative;
+    top: 7px;
+    width: 214px;
+    float: right;
+}
+
+.post-content-footer > div > div {
+    display: inline-block;
+    margin-right: 14px;
+}
+
+.post-content-footer .operation-logo {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    top: 3px;
+}
+
+.post-content-footer a {
+    font-size: 14px;
+    color: black;
+}
+
+.post-content-footer a:hover {
+    color: red;
+}
+
+.reply-content-wrapper{
+    border-top: 1px solid #c5c5c5;
+    margin-top: 15px;
+}
+
+.reply-content-wrapper .row{
+    border: 1px solid #c5c5c5;
+    border-top: none;
+    height: 55px;
+}
+
+.reply-content-wrapper .row>div{
+    display: inline-block;
+}
+
+.reply-content-wrapper .row .left,.reply-content-wrapper .row .right{
+    height: 55px;
+}
+
+.reply-content-wrapper .row .left{
+    width: 300px;
+    border-right: 1px solid #c5c5c5;
+}
+
+
+.reply-content-wrapper .row .right{
+    width: 693px;
+}

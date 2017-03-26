@@ -1,0 +1,276 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>天津高院信息化意见箱</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/index.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+    <script type="text/javascript" src="resources/js/moment.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="title">
+        <div id="current-time" style="float: left; margin-top: 2px;">欢迎登录天津最高院论坛，现在的时间是</div>
+        <div class="buttons" style="float: right;">
+            <div style="margin-right: 20px;"><span class="icon"
+                                                   style="background: url('resources/img/star.png') no-repeat"></span><span
+                    class="label">收藏本页</span></div>
+            <div><span class="icon" style="background: url('resources/img/home.png') no-repeat"></span><span
+                    class="label">设为首页</span></div>
+        </div>
+    </div>
+    <div class="logo">
+        <div style="background: url('resources/img/logo.png') no-repeat; height: 121px; width: 1133px; margin: auto;"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="current-location">
+        <div style="position: relative;top: 10px;left: 23px;">
+            <a href="#" class="pre-lv">天津高院信息化意见箱</a>
+            <span>&nbsp;&gt;&gt;&nbsp;</span>
+            <a href="#" class="current-lv">希望优化内网新网的搜索功能</a>
+        </div>
+    </div>
+    <div class="page-news">
+        <div class="buttons-group" style="float: left;">
+            <div class="news-button" style="background: url('resources/img/hfzt-up.png') no-repeat;width: 105px;"></div>
+            <div class="news-button" style="background: url('resources/img/news-up.png') no-repeat;"></div>
+            <div class="news-button" style="background: url('resources/img/pre-sub.png') no-repeat;"></div>
+            <div class="news-button" style="background: url('resources/img/next-sub.png') no-repeat;"></div>
+        </div>
+        <img src="resources/img/second-page.png" style="float: right;">
+    </div>
+    <div class="content">
+        <div class="current-location">
+            <div style="position: relative;top: 10px;left: 23px;">希望优化内网新网的搜索功能</div>
+        </div>
+
+        <!--帖子列表-->
+        <div class="post">
+            <div class="title-info">
+                <div class="post-time left">
+                    <div>发表于2016-07-15 00:05</div>
+                </div>
+                <div class="reply-time right">
+                    <div class="time">最新回复于2016-07-15 00:05</div>
+                    <div class="floor" style="float: right;">1#</div>
+                </div>
+            </div>
+            <div class="post-content" style="margin-top: -1px;">
+                <table style="border-spacing: 0;width: 1000px;">
+                    <tr>
+                        <td style="border-right: 1px solid #c5c5c5;">
+                            <div class="poster-time left">
+                                <div class="name">杨蕾</div>
+                                <div class="avatar"
+                                     style="background: url('resources/img/touxiang.png') no-repeat;"></div>
+                                <div class="poster-lv">【新手上路】</div>
+                                <div class="post-num">
+                                    <span style="position: relative;top: -5px;">帖子数&nbsp;1</span>
+                                    <span class="lv-logo" style="background: url('resources/img/star.png') no-repeat;"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="reply-content right" style="height: 259px; padding: 0 20px 0 20px;">
+                                <div style="height: 30px; border-bottom: 1px solid #c5c5c5;">
+                                    <span class="subject-logo"></span>
+                                    <span style="position: relative;top: 2px;left: 8px;font-weight: bold;">希望优化内网新网的搜索功能</span>
+                                </div>
+                                <div class="post-content-body" style="padding: 10px 5px 10px 5px;;min-height: 170px;">
+                                    高级搜索里的“栏目”不分层次，需要在上百条栏目里找，而且很多栏目名称是重复的，很难准确定位，建议将栏目分层次。
+                                </div>
+                                <div class="post-content-footer" style="border-top: 1px solid #c5c5c5;height: 39px;">
+                                    <div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/reply-logo.png') no-repeat;"></span>
+                                            <a href="#">回复</a>
+                                        </div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/quote-logo.png') no-repeat;"></span>
+                                            <a href="#">引用</a>
+                                        </div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/top-logo.png') no-repeat;"></span>
+                                            <a href="#">TOP</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="title-info">
+                <div class="post-time left" >
+                    <div>发表于2016-07-15 00:05</div>
+                </div>
+                <div class="reply-time right">
+                    <div class="time">最新回复于2016-07-15 00:05</div>
+                    <div class="floor" style="float: right;">2#</div>
+                </div>
+            </div>
+            <div class="post-content" style="margin-top: -1px;">
+                <table style="border-spacing: 0;width: 1000px;">
+                    <tr>
+                        <td style="border-right: 1px solid #c5c5c5;">
+                            <div class="poster-time left">
+                                <div class="name">管理员</div>
+                                <div class="avatar"
+                                     style="background: url('resources/img/touxiang.png') no-repeat;"></div>
+                                <div class="poster-lv">【管理员】</div>
+                                <div class="post-num">
+                                    <span style="position: relative;top: -5px;">帖子数&nbsp;79</span>
+                                    <span class="lv-logo" style="background: url('resources/img/zookeeper.png') no-repeat;"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="reply-content right" style="height: 259px; padding: 0 20px 0 20px;">
+                                <div style="height: 30px; border-bottom: 1px solid #c5c5c5;">
+                                    <span class="subject-logo"></span>
+                                    <span style="position: relative;top: 2px;left: 8px;font-weight: bold;">希望优化内网新网的搜索功能</span>
+                                </div>
+                                <div class="post-content-body" style="padding: 10px 5px 10px 5px;;min-height: 170px;">
+                                    高级搜索里的“栏目”不分层次，需要在上百条栏目里找，而且很多栏目名称是重复的，很难准确定位，建议将栏目分层次。
+                                </div>
+                                <div class="post-content-footer" style="border-top: 1px solid #c5c5c5;height: 39px;">
+                                    <div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/reply-logo.png') no-repeat;"></span>
+                                            <a href="#">回复</a>
+                                        </div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/quote-logo.png') no-repeat;"></span>
+                                            <a href="#">引用</a>
+                                        </div>
+                                        <div>
+                                            <span class="operation-logo" style="background: url('resources/img/top-logo.png') no-repeat;"></span>
+                                            <a href="#">TOP</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!--帖子列表-->
+    </div>
+
+    <div class="page-news">
+        <div class="buttons-group" style="float: left;">
+            <div class="news-button" style="background: url('resources/img/hfzt-down.png') no-repeat;width: 105px;"></div>
+            <div class="news-button" style="background: url('resources/img/news-down.png') no-repeat;"></div>
+            <div class="news-button" style="background: url('resources/img/pre-sub.png') no-repeat;"></div>
+            <div class="news-button" style="background: url('resources/img/next-sub.png') no-repeat;"></div>
+        </div>
+        <img src="resources/img/second-page.png" style="float: right;">
+    </div>
+
+<div class="news-content">
+        <div class="header-wrapper"><span>快速回复主题</span></div>
+        
+       
+        <table border="0" cellspacing="0" cellpadding="5px">
+        <tbody>
+            
+            <tr>
+                <td class="icon first">标题</td>
+                <td class="icon">
+                    <input type="text" style="width:375px;height:32px;"/>(可选)
+                </td>
+                
+            </tr>
+            <tr style="height: 135px;">
+                <td class="icon first">内容</td>
+                <td class="icon">
+                    <textarea name="#" cols="101" rows="5" style="height: 130px;"></textarea>
+                </td>
+               
+
+            </tr>
+            
+            <tr>
+                <td class="subject" colspan="2">                
+                    <a href="###" style="margin-bottun:-4px;float:right;color:black;" 
+		   onclick="if (confirm('此操作将覆盖当前帖子内容，确定要恢复数据吗？')) loadData();">恢复自动保存的数据</a>
+				<button id="postbtn" tabIndex=9 name="post_reply" type=submit class=submit style="width:110px;height:32px">
+				  <img src="resources/img/new-reply.png" style="margin-top: -4px;margin-left: -18px;"/></button>
+                </td>
+               
+            </tr>           
+        </tbody>
+       </table>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="buttons">
+        <ul id="foot-ul">
+            <li>
+                <small>设为首页</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>加入收藏</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>联系我们</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>网站管理</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>信息化维护</small>
+            </li>
+        </ul>
+    </div>
+    <div class="plain-text">
+        <small>民意沟通信箱: TJGY_TG@CHINACOURT.ORG</small>
+    </div>
+    <div class="plain-text">
+        <small>天津高级人民法院版权所有，未经协议授权，禁止下载使用或建立镜像</small>
+    </div>
+    <div class="plain-text">
+        <small>COPYRIGHT@2002-2016 BY CHINACOURT.ORG ALL RIGHTS RESERVED</small>
+    </div>
+    <div class="plain-text">
+        <small>REPRODUCTION IN WHOLE OR IN PART WITHOUT PERMISSION IS PROHIBITED</small>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setCurrentTime();
+    });
+    function setCurrentTime() {
+        var ct = moment().format('YYYY年MM月DD日 HH:mm');
+        $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        setInterval(function () {
+            var ct = moment().format('YYYY年MM月DD日 HH:mm');
+            $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        }, 1000);
+    }
+</script>
+</body>
+</html>

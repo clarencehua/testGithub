@@ -1,0 +1,25 @@
+body{
+    margin: 0px;
+}
+
+.main_wrapper{
+	margin: 0 auto ;
+	width: 645px;
+}
+
+.header_wrapper{
+	background: url(../images/headtitle.png) 0 0 no-repeat;
+	width: 645px;
+	height: 82px;
+}
+
+.link_ul{
+	list-style: none;
+    padding-left: 0px;
+    text-align: center;
+}
+
+.link_ul li{
+	display: inline-block;
+    margin: 0 5px;
+}

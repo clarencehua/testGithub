@@ -1,0 +1,48 @@
+$(function(){
+	function checkRule(){
+		var error=new Array();
+		var node=$("#register_form table");
+		var username=node.find("input[name='username']").val();
+		if(username==null || username=='')
+			error.push("姓名为空");
+		var password=node.find("input[name='password']").val();
+		if(password==null || password=='')
+			error.push("密码为空");
+		var retryPass=node.find("input[name='retryPass']").val();
+		if(retryPass==null || retryPass=='')
+			error.push("密码确认为空");
+		if(password!=null && password!='' && retryPass!=null && retryPass!='' && password!=retryPass)
+			error.push("两次输入的密码不相同");
+		var email=node.find("input[name='email']").val();
+		if(email!=null && email!=''){
+			var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+			if(!reg.test(email))
+				error.push("邮箱格式错误");
+		}
+		return error;
+	}
+	
+	$(".i_btn[type='submit']").click(function(){
+		var error=checkRule();
+		if(error!=null && error.length!=0){
+			alert("您填写的信息存在以下问题：\n"+error.join(",")+"\n请修改完后重新提价注册！");
+			return ;
+		}
+		$.ajax({
+			type:"post",
+			url:"register.aj",
+			data:$("#register_form").serialize(),
+			dataType:"json",
+			success:function(json){
+				if(json!=""){
+					alert(json);
+					return ;
+				}else{
+					alert("注册成功！");
+					window.location="login.do";
+				}
+			}
+		});
+		
+	});
+});

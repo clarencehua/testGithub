@@ -1,0 +1,37 @@
+package software.bbs.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import software.bbs.data.dao.ReplyDao;
+import software.bbs.data.dataobject.Replyb;
+import software.bbs.service.ReplyService;
+import software.bbs.service.convertor.ReplyConvertor;
+import software.bbs.service.model.ReplyModel;
+@Service("replyService")
+public class ReplyServiceImpl implements ReplyService {
+	@Autowired
+	ReplyDao replyDao;
+	
+
+	public void setReplyDao(ReplyDao replyDao) {
+		this.replyDao = replyDao;
+	}
+
+
+
+	public List<ReplyModel> ListReplyByPostId(Integer postId) {
+		List<Replyb> replybs = replyDao.ListReplyByPostId(postId);
+		return ReplyConvertor.replyDosToModels(replybs);
+	}
+
+
+
+	@Override
+	public void addReply(Replyb replyb) {
+		replyDao.save(replyb);
+	}
+
+}

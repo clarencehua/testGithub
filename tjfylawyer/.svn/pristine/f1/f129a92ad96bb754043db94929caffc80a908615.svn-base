@@ -1,0 +1,7 @@
+package software.bbs.data.dao;
+
+import software.bbs.data.dataobject.Userb;
+
+public interface UserDao extends BaseDao<Userb> {
+	//public void save(Userb userb);
+}

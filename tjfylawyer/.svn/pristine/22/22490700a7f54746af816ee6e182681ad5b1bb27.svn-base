@@ -1,0 +1,179 @@
+package software.bbs.data.dataobject;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/*
+ * post表
+ */
+@Entity
+@Table(name = "postb")
+public class Postb implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private Integer postId;//话题ID
+	private String title;//标题
+	private String content;//内容
+	private String author;//作者
+	private Date postTime;// 发表时间
+	private Date replyTime;// 回帖时间
+	private Integer maxFloor;//最大楼层
+	private String system;//所属系统
+	private String type;//类型
+	private String attachment;//附件
+	private Integer readRs;//阅读人数
+	private Integer replyRs;//回帖人数
+	private Integer posterId;//发帖人ID
+	private String topicState;//话题状态
+	private String solveState;//解决状态
+	private Integer isTop;//是否置顶
+	private Integer maxFloor; // 该贴的最大楼层
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "postId", nullable = false, unique = true)
+	public Integer getPostId() {
+		return postId;
+	}
+	public void setPostId(Integer postId) {
+		this.postId = postId;
+	}
+	
+	@Column(name = "title")
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	@Column(name = "content")
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	@Column(name = "author")
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	@Column(name = "postTime")
+	public Date getPostTime() {
+		return postTime;
+	}
+	public void setPostTime(Date postTime) {
+		this.postTime = postTime;
+	}
+	
+	@Column(name = "replyTime")
+	public Date getReplyTime() {
+		return replyTime;
+	}
+	public void setReplyTime(Date replyTime) {
+		this.replyTime = replyTime;
+	}
+	
+	@Column(name = "maxFloor")
+	public Integer getMaxFloor() {
+		return maxFloor;
+	}
+	public void setMaxFloor(Integer maxFloor) {
+		this.maxFloor = maxFloor;
+	}
+	
+	@Column(name = "system")
+	public String getSystem() {
+		return system;
+	}
+	public void setSystem(String system) {
+		this.system = system;
+	}
+	
+	@Column(name = "type")
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Column(name = "attachment")
+	public String getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
+	
+	@Column(name = "readRs")
+	public Integer getReadRs() {
+		return readRs;
+	}
+	public void setReadRs(Integer readRs) {
+		this.readRs = readRs;
+	}
+	
+	@Column(name = "replyRs")
+	public Integer getReplyRs() {
+		return replyRs;
+	}
+	public void setReplyRs(Integer replyRs) {
+		this.replyRs = replyRs;
+	}
+	
+	@Column(name = "posterId",nullable = false)
+	public Integer getPosterId() {
+		return posterId;
+	}
+	public void setPosterId(Integer posterId) {
+		this.posterId = posterId;
+	}
+	
+	@Column(name = "topicState")
+	public String getTopicState() {
+		return topicState;
+	}
+	public void setTopicState(String topicState) {
+		this.topicState = topicState;
+	}
+	
+	@Column(name = "solveState")
+	public String getSolveState() {
+		return solveState;
+	}
+	public void setSolveState(String solveState) {
+		this.solveState = solveState;
+	}
+	
+	@Column(name = "isTop")
+	public Integer getIsTop() {
+		return isTop;
+	}
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
+	}
+	@Column(name = "maxFloor")
+	public Integer getMaxFloor() {
+		return maxFloor;
+	}
+	public void setMaxFloor(Integer maxFloor) {
+		this.maxFloor = maxFloor;
+	}
+	
+	
+	
+
+}

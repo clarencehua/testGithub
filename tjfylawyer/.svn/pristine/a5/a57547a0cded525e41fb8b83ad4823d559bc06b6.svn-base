@@ -1,0 +1,126 @@
+package software.bbs.service.model;
+
+import java.io.Serializable;
+
+/**
+ * 用户上下文Model
+ * 
+ * @author wzq 2015-7-5
+ */
+public class UserContext implements Serializable {
+
+	private static final long serialVersionUID = 3781213350527130400L;
+
+	/**
+	 * id
+	 */
+	private Integer id;
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 密码
+	 */
+	private String password;
+	/**
+	 * 性别详情
+	 */
+	private String sex_str;
+	/**
+	 * 性别
+	 */
+	private Integer sex;
+	/**
+	 * 邮箱
+	 */
+	private String email;
+	/**
+	 * 照片
+	 */
+	private byte[] avatar;
+	/**
+	 * 错误信息
+	 */
+	private String errorMsg;
+
+	public UserContext() {
+	}
+
+	public UserContext(Integer id, String username, String password,
+			String sex_str, Integer sex, String email, byte[] avatar) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.sex_str = sex_str;
+		this.sex = sex;
+		this.email = email;
+		this.avatar = avatar;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSex_str() {
+		return sex_str;
+	}
+
+	public void setSex_str(String sex_str) {
+		this.sex_str = sex_str;
+	}
+
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+	
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+	
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+
+}

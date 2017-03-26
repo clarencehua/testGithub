@@ -1,0 +1,42 @@
+package software.bbs.service.convertor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import software.bbs.data.dataobject.Replyb;
+import software.bbs.service.model.ReplyModel;
+
+public class ReplyConvertor {
+
+	/**
+	 *  把单个 replyDo 转化为 Model
+	 * @param replyb
+	 * @return
+	 */
+	public static ReplyModel replyDoToModel(Replyb replyb){
+		ReplyModel replyModel = new ReplyModel();
+		if(replyb != null ){
+			replyModel.setContent(replyb.getContent());
+			replyModel.setFloor(replyb.getFloor());
+			replyModel.setIsTop(replyb.getIsTop());
+			replyModel.setPostId(replyb.getPostId());
+			replyModel.setReplyerId(replyb.getReplyerId());
+			replyModel.setReplyId(replyb.getReplyId());
+			replyModel.setReplyTime(replyb.getReplyTime());
+			replyModel.setTitle(replyb.getTitle());
+		}
+		return replyModel;
+	}
+	/**
+	 *  把replyDo 的List 转化为 Model 的List
+	 * @param replybs
+	 * @return
+	 */
+	public static List<ReplyModel> replyDosToModels(List<Replyb> replybs){
+		List<ReplyModel> replyModels = new ArrayList<ReplyModel>();
+			for(Replyb replyb:replybs){
+				replyModels.add(replyDoToModel(replyb));
+			}
+		return replyModels;
+	}
+}

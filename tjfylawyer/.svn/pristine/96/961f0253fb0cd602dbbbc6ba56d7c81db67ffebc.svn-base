@@ -1,0 +1,116 @@
+package software.bbs.service;
+
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+
+
+/**
+ * 系统异常处理
+ * @author ruanhao
+ *
+ */
+public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
+
+	/**
+	 * modified modified at 2012-7-6 by YU 更正了日志记录方式logException
+	 * 增加了异常记录的Logger
+	 */
+	private static Logger logger = Logger.getLogger(SystemExceptionResolver.class);
+	
+	/**
+	 * 默认的字符集
+	 */
+	private static final String DEFAULT_CHARSET = "utf-8";
+	
+		
+	@Override
+	protected ModelAndView doResolveException(HttpServletRequest request,
+			HttpServletResponse response, Object handler, Exception ex) {
+		String  url = request.getRequestURI();
+		
+		//Ajax请求
+		if(url.endsWith(".aj")){
+			
+			String error = "{\"exception\":\"发生系统异常，请与系统管理员联系。\"}";
+			try {
+				if(null!=error){
+					writeJsonResponse(response, error);
+				}
+			} catch (Exception e) {
+				logger.error("返回信息失败！", e);
+			}
+			return null;
+		}else{
+			return super.doResolveException(request, response, handler, ex);
+		}
+	}
+	/**
+	 * 重载了SimpleMappingExceptionResolver的logException方法
+	 * modified modified at 2012-7-6 by YU 更正了日志记录方式logException
+	 * 定制异常日志记录方式
+	 */
+	protected void logException(Exception ex, HttpServletRequest request) {
+		String msg = null;
+		msg = this.buildExceptionMessage(request);
+		if(msg == null){
+			msg="Unknown Request.";
+		}
+		if(ex == null){
+			ex = new Exception(msg);
+		}
+		logger.error(msg,ex);
+	}
+	
+	/**
+	 * 根据异常构造日志内容
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private String buildExceptionMessage(HttpServletRequest request){
+		String msg = "parameters:";
+		try {
+			for (Enumeration e = request.getParameterNames() ; e.hasMoreElements() ;) {
+	            String parameterName = (String) e.nextElement();
+	            if(parameterName == null){
+	            	continue;
+	            }
+	            String parameterValue = request.getParameter(parameterName);
+	            if(parameterValue == null){
+	            	parameterValue="null";
+	            }
+	            msg += ("["+parameterName+"="+parameterValue+"]");
+	        } 
+		} catch (Exception e) {
+			logger.error("Error in buildExceptionMessage", e);
+		}
+		
+		if(msg.equals("parameters:")){
+			msg += "No HttpServletRequest parameter.";
+		}
+		return msg;
+		
+	}
+	
+	/**
+	 * 向Response中写json数据
+	 * @param response
+	 * @param content
+	 * @throws Exception
+	 */
+	private void writeJsonResponse(HttpServletResponse response, String content) throws Exception{
+		response.addHeader("Content-Type", "text/html;charset=" + DEFAULT_CHARSET);
+        response.setCharacterEncoding(DEFAULT_CHARSET);
+        PrintWriter writer = response.getWriter();
+        writer.write(content);
+        writer.flush();
+        writer.close();
+	}
+}

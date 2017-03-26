@@ -1,0 +1,86 @@
+package software.bbs.data.dataobject;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "replyb")
+public class Replyb {
+	private static final long serialVersionUID = 1L;
+	
+	private Integer replyId; //回帖ID
+	private Integer floor; //楼层
+	private String title; // 标题
+	private Integer replyerId; //发帖人
+	private String content; // 发帖内容
+	private Date replyTime; //回复时间
+	private Integer postId; //表示该回贴所属哪条话题
+	private Integer isTop; //是否置顶
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "replyId", nullable = false, unique = true)
+	public Integer getReplyId() {
+		return replyId;
+	}
+	public void setReplyId(Integer replyId) {
+		this.replyId = replyId;
+	}
+	@Column(name = "floor")
+	public Integer getFloor() {
+		return floor;
+	}
+	public void setFloor(Integer floor) {
+		this.floor = floor;
+	}
+	@Column(name = "title")
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	@Column(name = "replyerId")
+	public Integer getReplyerId() {
+		return replyerId;
+	}
+	public void setReplyerId(Integer replyerId) {
+		this.replyerId = replyerId;
+	}
+	@Column(name = "content")
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	@Column(name = "replyTime")
+	public Date getReplyTime() {
+		return replyTime;
+	}
+	public void setReplyTime(Date replyTime) {
+		this.replyTime = replyTime;
+	}
+	@Column(name="postId")
+	public Integer getPostId() {
+		return postId;
+	}
+	public void setPostId(Integer postId) {
+		this.postId = postId;
+	}
+	@Column(name = "isTop")
+	public Integer getIsTop() {
+		return isTop;
+	}
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
+	}
+	
+	
+}

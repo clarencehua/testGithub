@@ -1,0 +1,53 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户列表</title>
+	<link rel="stylesheet" href="resources/css/register.css" type="text/css">
+</head>
+<body>
+<div class="main_wrapper">
+	<div class="header_wrapper"></div>
+	<div class="link_list">
+		<ul class="link_ul">
+			<li><a href="login.do" class="i_a">Login</a></li>
+			<li><a href="register.do" class="i_a">Register</a></li>
+			<li><a href="logoff.do" class="i_a">Log off</a></li>
+			<li><a href="javascript:void(0);" class="i_a">My Profile</a></li>
+			<li><a href="showAllUsers.do" class="i_a">Watch List</a></li>
+			<li><a href="javascript:void(0);" class="i_a">Order Cancellation</a></li>
+			<li><a href="javascript:void(0);" class="i_a">Search</a></li>
+		</ul>
+	</div>
+	<div class="table_wrapper">
+		<table class="usertable">
+			<thead>
+				<tr>
+					<td>序号</td>
+					<td>用户名</td>
+					<td>性别</td>
+					<td>邮箱</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${users }" var="user" varStatus="i">
+				<tr>
+					<td>${i.index+1 }</td>
+					<td>${user.username }</td>
+					<td>${user.sex_str }</td>
+					<td>${user.email }</td>
+					<td><span class="detail_btn">详情</span></td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="resources/js/jquery/jquery-1.9.1.js"></script>
+<script src="resources/js/jquery/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="resources/js/userlist.js"></script>
+</html>

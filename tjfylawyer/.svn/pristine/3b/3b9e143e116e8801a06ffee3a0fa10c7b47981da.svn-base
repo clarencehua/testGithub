@@ -1,0 +1,58 @@
+package software.bbs.util;
+
+import java.util.Enumeration;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+/**
+ * 
+ * HttpRequest的工具类
+ * 
+ * @author zym
+ *
+ */
+public class RequestUtil {
+	
+	
+	/**
+	 * 获得一个请求的全路径，包括参数
+	 * @param request
+	 * @return
+	 */
+	public static String getFullUrlByReqeust(HttpServletRequest request){
+		String doName = request.getServletPath();
+		
+		String argus="";
+		Enumeration<String> names = request.getParameterNames();
+		Map<String,String[]> m = request.getParameterMap();
+		
+		while(names.hasMoreElements()){
+			String name = names.nextElement();
+			String[] value = m.get(name);
+			argus+=name+"="+value[0]+"&";
+		}
+		
+		if(StringUtil.isEmpty(argus)){
+			return doName;
+		}
+		else{
+			argus = argus.substring(0, argus.length()-1);
+			return doName+"?"+argus;
+		}
+	}
+	
+	/**
+	 * 判断一个请求是否为ajax
+	 * @param request
+	 * @return
+	 */
+	public static boolean isAjax(HttpServletRequest request){
+		String type = request.getHeader("X-Requested-With");
+		if(StringUtil.isBlank(type)){
+			return false;
+		}
+		return type.equals("XMLHttpRequest");
+	}
+}

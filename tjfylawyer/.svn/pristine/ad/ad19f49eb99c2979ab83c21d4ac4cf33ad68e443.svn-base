@@ -1,0 +1,58 @@
+package software.bbs.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * 分页的相关工具方法
+ * @author zym
+ *
+ */
+public class PageUtil {
+
+	/**
+	 * 对于某些数据库，不支持分页查询语法，如Sybase
+	 * 只能返回所有数据，在内存中分页，
+	 * @param data
+	 * @param pageSize 页大小
+	 * @param page 页数
+	 * @return
+	 */
+	List<?> getDataByPage(List<?> data, int pageSize, int page){
+		long allsize = data.size();
+		if((page-1)*pageSize>allsize){
+			return null;
+		}
+		List<Object> resultList = new ArrayList<Object>();
+		int i=0,j=0;
+		for(Object element:data){
+			if(i>=(page-1)*pageSize){
+				resultList.add(element);
+				j++;
+				if(j>pageSize){
+					break;
+				}
+			}
+			i++;
+		}
+		return resultList;
+	}
+	
+	
+	/**
+	 * 自动生成分页sql
+	 * 
+	 * @param sql
+	 * @param pageSize
+	 * @param page
+	 * @return
+	 */
+	String generatePageSqlForMysql(String sql, int pageSize, int page){
+		long start = (page-1)*pageSize;
+		sql += start+","+pageSize;
+		return sql;
+	}
+	
+	
+}

@@ -1,0 +1,39 @@
+package software.bbs.web.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class HtxxController {
+
+/*	/@Autowired
+	private ShowWzService showWzService;
+	
+	@RequestMapping(value = "/showWz.do", method = RequestMethod.GET)
+	public String showBm(HttpServletRequest request) {
+		List<ReplyModel> replyList = showWzService.getAllreply();
+		request.setAttribute("replyList", replyList);
+		return "bbs/front/showWz";
+	}*/
+	
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	public String post(HttpServletRequest request) {
+		
+		return "bbs/front/main";
+	}
+
+	@RequestMapping(value = "/showWz.do", method = RequestMethod.GET)
+	public String reply(HttpServletRequest request) {
+//		Syso
+		return "bbs/front/showWz";
+	}
+	
+}

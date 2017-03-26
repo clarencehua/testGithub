@@ -1,0 +1,23 @@
+package software.bbs.data.dao;
+
+import java.util.List;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+import software.bbs.data.dataobject.Postb;
+
+public interface PostDao extends BaseDao<Postb>{
+
+	/**
+	 * 得到所有的Post
+	 */
+	/*public List<Postb> getAllPost() {
+		String hql = "from Postb order by xssx";
+		List<Postb> postList = getHibernateTemplate().find(hql);
+		return postList;
+	}*/
+	/*public List<Postb> getAllPost() {
+		String hql = "from Postb ";
+		List<Postb> postList = getHibernateTemplate().find(hql);
+		return postList;
+	}*/
+}

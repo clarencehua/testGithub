@@ -1,0 +1,152 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>天津高院信息化意见箱</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/index.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+    <script type="text/javascript" src="resources/js/moment.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="title">
+        <div id="current-time" style="float: left; margin-top: 2px;">欢迎登录天津最高院论坛，现在的时间是</div>
+        <div class="buttons" style="float: right;">
+            <div style="margin-right: 20px;"><span class="icon"
+                                                   style="background: url('resources/img/star.png') no-repeat"></span><span
+                    class="label">收藏本页</span></div>
+            <div><span class="icon" style="background: url('resources/img/home.png') no-repeat"></span><span
+                    class="label">设为首页</span></div>
+        </div>
+    </div>
+    <div class="logo">
+        <div style="background: url('resources/img/logo.png') no-repeat; height: 121px; width: 1133px; margin: auto;"></div>
+    </div>
+</div>
+
+<div class="container">
+    
+    <div class="news-content">
+        <div class="header-wrapper"><span>发现新主题</span></div>
+        
+        <!--主题列表-->
+        <table border="0" cellspacing="0" cellpadding="5px">
+        <tbody>
+            <tr>
+                <td class="icon first" >前缀</td>
+                <td class="icon">
+                    <select name="#" style="width:200px;height:35px;">
+                      <option value="#">机关办公平台</option>
+                      <option value="#">Saab</option>
+                      <option value="#">Opel</option>
+                      <option value="#">Audi</option>
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="icon first">主题</td>
+                <td class="icon">
+                    <input type="text" style="width:375px;height:35px;"/>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="icon first">内容</td>
+                <td class="icon">
+                    <textarea name="#" cols="101" rows="5"></textarea>
+                </td>
+               
+
+            </tr>
+            <tr>
+                <td class="icon first">附件</td>
+                <td class="icon">
+                    <div>
+                        <input type="text" style="float:left;width:375px;height:35px;"/>                  
+                        <img src="resources/img/xzwj.png" style="float:left;height:35px;width: 100px;" >
+                        <img src="resources/img/scwj.png" style="float:left;height:35px;width: 100px;" >
+                        
+                    </div>
+                </td>
+            
+            </tr>
+            <tr>
+                <td class="subject" colspan="2">                
+                    <input type="image" src="resources/img/tjzt.png" alt="Submit"/>
+                    <input type="image" src="resources/img/czzt.png" alt="Submit"/>
+                </td>
+               
+            </tr>           
+        </tbody>
+        </table>
+        
+    </div>
+</div>
+
+    
+
+
+<div class="footer">
+    <div class="buttons">
+        <ul id="foot-ul">
+            <li>
+                <small>设为首页</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>加入收藏</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>联系我们</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>网站管理</small>
+            </li>
+            <li class="seprator">
+                <small>|</small>
+            </li>
+            <li>
+                <small>信息化维护</small>
+            </li>
+        </ul>
+    </div>
+    <div class="plain-text">
+        <small>民意沟通信箱: TJGY_TG@CHINACOURT.ORG</small>
+    </div>
+    <div class="plain-text">
+        <small>天津高级人民法院版权所有，未经协议授权，禁止下载使用或建立镜像</small>
+    </div>
+    <div class="plain-text">
+        <small>COPYRIGHT@2002-2016 BY CHINACOURT.ORG ALL RIGHTS RESERVED</small>
+    </div>
+    <div class="plain-text">
+        <small>REPRODUCTION IN WHOLE OR IN PART WITHOUT PERMISSION IS PROHIBITED</small>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setCurrentTime();
+    });
+    function setCurrentTime() {
+        var ct = moment().format('YYYY年MM月DD日 HH:mm');
+        $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        setInterval(function () {
+            var ct = moment().format('YYYY年MM月DD日 HH:mm');
+            $('#current-time')[0].innerText = '欢迎登陆天津最高院论坛，现在的时间是 ' + ct;
+        }, 1000);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+$(function(){
+	$oTable={};
+	$main={};
+	
+	if (window.PIE) {
+		$('.rounded').each(function() {
+			PIE.attach(this);
+		});
+	}
+	function turnToPage(target){
+		var url="jqqd.aj";
+		if(target!=null && target!=''){
+			url=target+'.aj';
+			
+		}
+		$.ajax({
+			url:url,
+			type:'post',
+			dataType:'html',
+			data:{target:target},
+			success:function(json){
+				if(json=='AjaxNotLogin'){
+					window.location="login.do";
+				}else{
+					$(".right_wrapper").html("").html(json);
+				}
+			}
+		});
+	}
+	
+	function navClick(type,target){
+		$(".nav li a.selected").removeClass("selected");
+		var nav=$(".nav li a").eq(type-1);
+		nav.addClass("selected");
+		var lx=nav.data('lx');
+		$(".leftmenu dd").hide();
+		$(".leftmenu ."+lx).show();
+		//显示第三层导航
+		$(".mainindex ul").hide();
+		$(".mainindex ."+lx).show();
+		$(".mainindex ul:visible").first().show();
+		
+		if(target && target!=""){
+			$(".menuson li."+target).click();
+			if($(".menuson li.active").is(":visible")){
+				
+			}else{
+				$(".menuson li:visible").eq(0).parent().slideUp();
+				$(".menuson li.active").parent().slideDown();
+			}
+		}else{
+			$(".leftmenu dd:visible").first().find(".menuson").show();
+		}
+	}
+	
+	$(".nav li a").click(function(){
+		var type=$(this).data("type");
+		window.location="showDefault.do?type="+type;
+	});
+	// 
+	
+	//修改密码
+	$("#passwd").click(function(){
+		$(".popup_title span").html("修改密码");
+		$.ajax({
+			url : "showChangePwd.aj",
+			type : "post",
+			dataType : "html",
+			success : function(html) {
+				$(".popup_info").html("").html(html);
+				$(".popup").show();
+				$(".popup .ok_btn").unbind("click");
+				$(".popup .ok_btn").on("click", function() {
+					var p1 = $('[name="p1"]').val();
+					var p2 = $('[name="p2"]').val();
+					
+					$.ajax({
+						url:"changePwd.aj",
+						type:"post",
+						dataType:'json',
+						data:{
+							'p1':p1,
+							'p2':p2
+						},
+						success:function(data){
+							if(data=="-1"){
+								alert("输入的密码不一致，请重新输入");
+							}else if(data=="0"){
+								alert("修改密码失败！");
+								$(".popup").hide();
+							}else if(data=="1"){
+								alert("修改密码成功！");
+								$(".popup").hide();
+							}
+						}
+					});
+				});
+				$(".popup .cancel_btn").one("click", function() {
+					$(".popup").hide();
+				});
+			}
+		});
+	});
+	
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active");
+		$(this).addClass("active");
+		turnToPage($(this).find("a").data("target"));
+	});
+
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('ul').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('ul').slideUp();
+		}else{
+			$(this).next('ul').slideDown();
+		}
+	});
+
+	$(".leftmenu .menuson .active").parent().show();
+
+	$(".popup .close_div").click(function(){
+		var node=$(".popup");
+		node.hide();
+	});
+	
+	$(".logout").click(function(){
+		window.location.href="login.do";
+	});
+	
+	$main.enable=function(){
+		$("input.input_diseditable").removeClass("input_diseditable").addClass("dfinput").prop("readonly",false);
+		$(".select_disable").each(function(){
+			var parent=$(this).parent();
+			$(this).remove();
+			parent.find("select.dfinput").show();
+		});
+		$(".date_disable").each(function(){
+			var parent=$(this).parent();
+			$(this).remove();
+			parent.find(".Wdate_disable").removeClass("Wdate_disable").addClass("Wdate").show();
+		});
+		$(".auto_disable").each(function(){
+			var parent=$(this).parent();
+			$(this).remove();
+			parent.find(".field").show();
+		});
+		$(".datetime_disable").each(function(){
+			var parent=$(this).parent();
+			$(this).remove();
+			parent.find("input.datetime").show();
+		});
+	};
+	
+	$main.disable=function(){
+		$("input.dfinput").not(".auto").removeClass("dfinput").addClass("input_diseditable").prop("readonly",true);
+		$("select.dfinput").each(function(){
+			var value=$.trim($(this).find("option:selected").html());
+			var parent=$(this).parent();
+			$(this).hide();
+			var html='<input class="input_diseditable select_disable" value="'+value+'" readonly="readonly" />';
+			parent.append(html);
+		});
+		$("input.auto").each(function(){
+			var value=$.trim($(this).val());
+			var parent=$(this).parent();
+			var root=parent.parent();
+			parent.hide();
+			var html='<input class="input_diseditable auto_disable" value="'+value+'" readonly="readonly" />';
+			root.append(html);
+		});
+		$(".Wdate").each(function(){
+			var value=$(this).val();
+			var parent=$(this).parent();
+			$(this).removeClass("Wdate").addClass("Wdate_disable").hide();
+			var html='<input class="input_diseditable date_disable" value="'+value+'" readonly="readonly" />';
+			parent.append(html);
+		});
+		$("input.datetime").each(function(){
+			var value=$(this).val();
+			var parent=$(this).parent();
+			$(this).hide();
+			var html='<input class="input_diseditable datetime_disable" value="'+value+'" readonly="readonly" />';
+			parent.append(html);
+		});
+	};
+	
+	$main.jsonCheck=function(object){
+		for(var value in object){
+			if(object[value]==null || object[value]=="")
+				object[value]=undefined;
+		}
+	};
+	
+	$main.print=function(title){
+		var inputArr=$(".toPrint").clone();
+		inputArr.find(".printIgnore").remove();
+		var input="";
+		for(var i=0;i<inputArr.length;i++){
+			input+=inputArr[i].innerHTML;
+		}
+		var headobj = document.getElementsByTagName("head").item(0);
+		var headHtml = headobj.outerHTML;
+		var reg = new RegExp("<title>.*</title>","g");
+		headHtml = headHtml.replace(reg,"<title>"+title+"</title>");
+		printFrame = document.getElementById("lldxi_printRegionFrame_2012_0112");
+		if(printFrame!=null)
+		{document.body.removeChild(printFrame);}
+
+		printFrame = document.createElement("iframe");
+		printFrame.setAttribute("src", "about:blank");
+		printFrame.setAttribute("id", "lldxi_printRegionFrame_2012_0112");
+		printFrame.setAttribute("marginheight", 0);
+		printFrame.setAttribute("marginwidth", 0);
+		printFrame.style.display = "none";
+		document.body.appendChild(printFrame);
+		if(navigator.userAgent.indexOf("MSIE")>0){
+			var htmlobj = printFrame.contentWindow.document.createElement("html");
+			var bodyobj = printFrame.contentWindow.document.createElement("body");
+			bodyobj.innerHTML = input;
+			htmlobj.appendChild(headobj.cloneNode(true));
+			htmlobj.appendChild(bodyobj);
+			printFrame.contentWindow.document.appendChild(htmlobj);
+			printFrame.contentWindow.document.execCommand("Print",true);
+		}
+
+		if(navigator.userAgent.indexOf("Chrome")>0){
+			htmlstr = "<html>" + headHtml + "<body>" + input+"<\/body>"+"<\/html>";
+			printFrame.contentWindow.document.write(htmlstr);
+			printFrame.contentWindow.print();
+		}
+	};
+	
+	$(".tip .cancel").click(function(){
+		$(".tip").fadeOut(100);
+	});
+	
+	function init(){
+		var height=screen.availWidth;
+		$("body").width(height-10);
+		$(".right_wrapper").width($(".top_wrapper").width()-$(".left_wrapper").width()-5);
+		var type=parseInt($(".nav").data("type"));
+		var target=$(".nav").data("target");
+		navClick(type,target);
+	}
+	init();
+});
+
+var Validator={
+		isNumber:function(s,d){
+			return !isNaN(s.nodeType==1?s.value:s)&&(!d||!this.test(s,'^-?[0-9]*\\.[0-9]*$'));
+		},
+		test:function(s,p){s=s.nodeType==1?s.value:s; return new RegExp(p).test(s);}
+	};
+	
+	var validate=function(fninput,callback){
+		var ispass=true;
+		fninput.each(function(){
+			inputtype=$(this).data("type");
+			if(inputtype=="number"){
+				if(!Validator.isNumber($(this).val())){
+					$(this).css("border:solid","1px #ff0000");
+					ispass=false;
+				}
+			}
+		});
+		if(ispass==false){$("table").append("<span style='color:#ff0000'>类型错误<span>");}
+		else{callback();}
+	};
+	
+	

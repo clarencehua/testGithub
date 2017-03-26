@@ -1,0 +1,87 @@
+package software.lawyer.data.dataobject;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/*
+ * �û���
+ */
+@Entity
+@Table(name = "userb")
+public class Userb implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private Integer userId;//�û�ID
+	private String userName;//�û���
+	private String password;
+	private Integer level;//�û��ȼ�
+	private Integer postNum;//������
+	private String userCode;//�û����� 
+
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "userID", nullable = false, unique = true)
+	public Integer getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	
+	@Column(name = "userName",nullable = false, unique = true)
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	@Column(name = "password",nullable = false)
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@Column(name = "level")
+	public Integer getLevel() {
+		return level;
+	}
+	
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	
+	@Column(name = "postNum")
+	public Integer getPostNum() {
+		return postNum;
+	}
+	
+	public void setPostNum(Integer postNum) {
+		this.postNum = postNum;
+	}
+	
+	@Column(name = "userCode")
+	public String getUserCode() {
+		return userCode;
+	}
+	
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	
+	
+
+}

@@ -1,0 +1,52 @@
+package software.bbs.service.convertor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import software.bbs.data.dataobject.Postb;
+import software.bbs.service.model.PostModel;
+
+
+public class PostConvertor {
+
+	/**
+	 * post的do转换model
+	 */
+	public static PostModel postDoToModel(Postb postb) {
+		PostModel postModel = new PostModel();
+		if(postb!=null){
+			postModel.setPostId(postb.getPostId());
+			postModel.setTitle(postb.getTitle());
+			postModel.setContent(postb.getContent());
+			postModel.setAuthor(postb.getAuthor());
+			postModel.setPostTime(postb.getPostTime());
+			postModel.setReplyTime(postb.getReplyTime());
+			postModel.setMaxFloor(postb.getMaxFloor());
+			postModel.setSystem(postb.getSystem());
+			postModel.setType(postb.getType());
+			postModel.setAttachment(postb.getAttachment());
+			postModel.setReadRs(postb.getReadRs());
+			postModel.setReplyRs(postb.getReplyRs());
+			postModel.setPosterId(postb.getPosterId());
+			postModel.setTopicState(postb.getTopicState());
+			postModel.setSolveState(postb.getSolveState());
+			postModel.setIsTop(postb.getIsTop());
+			postModel.setMaxFloor(postb.getMaxFloor());
+		}
+		return postModel;
+	}
+	
+	
+	/**
+	 * Post的doList转换modelList
+	 */
+	public static List<PostModel> postDosToModels(List<Postb> postbList) {	
+		List<PostModel> postModelList = new ArrayList<PostModel>();
+		for (Postb post : postbList) {
+			PostModel postModel = postDoToModel(post);
+			postModelList.add(postModel);
+		}
+		return postModelList;
+	}
+	
+}

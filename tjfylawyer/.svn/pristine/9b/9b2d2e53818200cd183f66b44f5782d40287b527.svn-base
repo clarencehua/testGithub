@@ -1,0 +1,16 @@
+package software.bbs.data.dao;
+
+import java.util.List;
+
+import software.bbs.data.dataobject.Replyb;
+
+public interface ReplyDao extends BaseDao<Replyb>{
+	/**
+	 * 根据postId 找出 其对应的回复内容
+	 * @param postId
+	 * @return
+	 */
+	public List<Replyb> ListReplyByPostId(Integer postId);
+	
+	
+}

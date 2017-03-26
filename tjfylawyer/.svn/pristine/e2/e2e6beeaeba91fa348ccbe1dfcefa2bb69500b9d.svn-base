@@ -1,0 +1,10 @@
+package software.bbs.data.dao.impl;
+
+import software.bbs.data.dao.PostDao;
+import software.bbs.data.dataobject.Postb;
+
+
+
+public class PostDaoImpl extends BaseDaoImpl<Postb> implements PostDao{
+
+}

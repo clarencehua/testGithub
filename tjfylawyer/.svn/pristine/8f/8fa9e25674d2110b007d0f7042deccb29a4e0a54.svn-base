@@ -1,0 +1,63 @@
+package software.bbs.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import software.bbs.data.dao.PostDao;
+import software.bbs.data.dao.UserDao;
+import software.bbs.data.dataobject.Postb;
+import software.bbs.data.dataobject.Replyb;
+import software.bbs.data.dataobject.Userb;
+import software.bbs.service.PostService;
+import software.bbs.service.UserService;
+import software.bbs.service.convertor.PostConvertor;
+import software.bbs.service.model.PostModel;
+
+@Service("postService")
+public class PostServiceImpl implements PostService {
+
+	@Autowired
+	private PostDao postDao;
+	
+	public void setPostDao(PostDao postDao) {
+		this.postDao = postDao;
+	}
+
+
+	public List<PostModel> findObjects() {
+		List<Postb>  lists=postDao.findObjects();
+		for(Postb list:lists){
+			System.out.println(list.getTitle());
+		}
+		return PostConvertor.postDosToModels(lists);
+	}
+
+
+	@Override
+	public Postb findPostByPostId(Integer postId) {
+		return postDao.findObjectById(postId);
+	}
+
+
+	@Override
+	public void updatePostb(Postb postb) {
+		postDao.update(postb);
+	}
+
+
+
+
+
+	
+	/*@Override
+	public List<PostModel> getAllPost() {
+		List<Postb> postList = postDao.getAllPost();
+		return PostConvertor.postDosToModels(postList);
+	}*/
+
+	
+}
