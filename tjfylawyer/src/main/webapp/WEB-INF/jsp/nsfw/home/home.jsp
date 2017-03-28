@@ -155,7 +155,9 @@
             <div class="lc_grzxbt">
                 <h1>我的投诉</h1>
                 <div style="float:right;padding-top:3px;">
-                	<s:a action="home_complainAddUI" namespace="/sys">我要投诉</s:a>&nbsp;&nbsp;
+                	<!-- <s:a action="home_complainAddUI" namespace="/sys">我要投诉</s:a> -->
+                	<a href="${ctx }/sys/home_complainAddUI.do" target="_blank">我要投诉</a>
+                	&nbsp;&nbsp;
                 </div>
             </div>
             <table width="98%" border="0" align="center">

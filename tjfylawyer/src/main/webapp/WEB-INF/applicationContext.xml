@@ -107,5 +107,6 @@
 	<bean id="roleDao" class="software.lawyer.data.dao.impl.RoleDaoImpl" parent = "baseDao"></bean>
 	<bean id="permissionCheck" class="software.lawyer.web.permission.impl.PermissionCheckImpl"></bean>
 	<bean id="infoDao" class="software.lawyer.data.dao.impl.InfoDaoImpl" parent="baseDao"></bean>
+	<bean id="complainDao" class="software.lawyer.data.dao.impl.ComplainDaoImpl" parent="baseDao"></bean>
 	</beans>
 
