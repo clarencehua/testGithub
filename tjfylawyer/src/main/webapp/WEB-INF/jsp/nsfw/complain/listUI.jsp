@@ -22,6 +22,11 @@
 				+ compId;
 		document.forms[0].submit();
 	}
+	//投诉统计
+	function doAnnualStatistic() {
+		document.forms[0].action = "${basePath}nsfw/complain_annualStatisticChartUI.do";
+		document.forms[0].submit();
+	}
 </script>
 </head>
 <body class="rightBody">
@@ -37,7 +42,8 @@
 					<div class="search_art">
 						<li>投诉标题：<!-- <s:textfield name="complain.compTitle" cssClass="s_text"  cssStyle="width:160px;"/> -->
 							<input name="complain.compTitle" class="s_text"
-							style="width:160px;" /></li>
+							style="width:160px;" />
+						</li>
 						<li>投诉时间：<input id="startTime" name="startTime"
 							cssClass="s_text" style="width:160px;" readonly="true"
 							onfocus="WdatePicker({'skin':'whyGreen','dateFmt':'yyyy-MM-dd HH:mm'});" />
@@ -47,14 +53,14 @@
 						</li>
 						<li>状态：<!-- <s:select name="complain.state" list="#complainStateMap" headerKey="" headerValue="全部"/> -->
 							<select name="complain.state">
-							<option >全部</option> 
-							<c:forEach items="${complainStateMap}" var="li">
-									<option  value="${li.key}">${li.value}</option>
-							</c:forEach>
-							</select></li>
-						<li><input type="button" class="s_button" value="搜 索"
-							onclick="doSearch()" />
+								<option>全部</option>
+								<c:forEach items="${complainStateMap}" var="li">
+									<option value="${li.key}">${li.value}</option>
+								</c:forEach>
+						</select>
 						</li>
+						<li><input type="button" class="s_button" value="搜 索"
+							onclick="doSearch()" /></li>
 						<li style="float:right;"><input type="button" value="统计"
 							class="s_button" onclick="doAnnualStatistic()" />&nbsp;</li>
 
@@ -84,16 +90,16 @@
 											<c:when test="${fn:length(testStr) > 10}">
 												<c:out value="${fn:substring(testStr, 0, 10)}" />
 											</c:when>
-										</c:choose>
-									</td>
+										</c:choose></td>
 									<td align="center">
-										<!-- <s:property value="#complainStateMap[state]"/> -->
-										<c:forEach items="${complainStateMap}" var="aa">
+										<!-- <s:property value="#complainStateMap[state]"/> --> <c:forEach
+											items="${complainStateMap}" var="aa">
 											<c:if test="${aa.key==li.state}">${aa.value}</c:if>
-										</c:forEach> 
+										</c:forEach></td>
+									<td align="center"><c:if test="${li.state!='2'}">
+											<a href="javascript:doDeal('${li.compId}')">受理</a>
+										</c:if>
 									</td>
-									<td align="center"><a
-										href="javascript:doDeal('${li.compId}')">受理</a></td>
 								</tr>
 							</c:forEach>
 						</table>

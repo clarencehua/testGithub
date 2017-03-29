@@ -1,6 +1,12 @@
 package software.lawyer.web.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +24,7 @@ import software.lawyer.service.model.ComplainCustom;
 import software.lawyer.service.model.ComplainReplyCustom;
 import software.lawyer.util.DateUtil;
 import software.lawyer.util.QueryHelper;
+import software.lawyer.util.ResponseBuilder;
 import software.lawyer.util.StringUtil;
 
 @Controller
@@ -25,7 +32,6 @@ import software.lawyer.util.StringUtil;
 public class ComplainController {
 	@Resource
 	private ComplainService complainService;
-	
 
 	public ComplainService getComplainService() {
 		return complainService;
@@ -94,9 +100,10 @@ public class ComplainController {
 	// complain_deal.do
 	@RequestMapping(value = "complain_deal.do", method = RequestMethod.POST)
 	public String deal(HttpServletRequest request,
-			HttpServletResponse response, ComplainCustom complainCustom,ComplainReplyCustom complainReplyCustom) {
+			HttpServletResponse response, ComplainCustom complainCustom,
+			ComplainReplyCustom complainReplyCustom) {
 		Complain complain = complainCustom.getComplain();
-		ComplainReply reply=complainReplyCustom.getComplainReply();
+		ComplainReply reply = complainReplyCustom.getComplainReply();
 		if (complain != null) {
 			Complain tem = complainService.findObjectById(complain.getCompId());
 			// 1、更新投诉的状态为 已受理
@@ -116,4 +123,39 @@ public class ComplainController {
 		return "redirect:complain_listUI.do";
 	}
 
+	// complain_annualStatisticChartUI.do
+	@RequestMapping(value = "complain_annualStatisticChartUI.do", method = {
+			RequestMethod.POST, RequestMethod.GET })
+	public String annualStatisticChartUI(HttpServletRequest request,
+			HttpServletResponse response) {
+		// 获取当前年份
+		Calendar cal = Calendar.getInstance();
+		int curYear = cal.get(Calendar.YEAR);// 当前年份
+		request.setAttribute("curYear", curYear);
+
+		List yearList = new ArrayList();
+		for (int i = curYear; i > curYear - 5; i--) {
+			yearList.add(i);
+		}
+		request.setAttribute("yearList", yearList);
+		return "complain/annualStatisticChartUI";
+	}
+
+	// complain_getAnnualStatisticData.do
+	@RequestMapping(value = "complain_getAnnualStatisticData.do", method = {
+			RequestMethod.POST, RequestMethod.GET })
+	public void getAnnualStatisticData(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		int year = 0;
+		if (request.getParameter("year") != null) {
+			year = Integer.valueOf(request.getParameter("year"));
+		} else {
+			// 默认 当前年份
+			year = Calendar.getInstance().get(Calendar.YEAR);
+		}
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("msg", "success");
+		map.put("chartData", complainService.getAnnualStatisticDataByYear(year));
+		new ResponseBuilder().writeJsonResponse(response, map);
+	}
 }

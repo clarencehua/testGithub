@@ -233,7 +233,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
+		<!-- 定时器 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.8.5</version>
+		</dependency>
+		
 		<!-- 其他 -->
 		<dependency>
 			<groupId>commons-collections</groupId>

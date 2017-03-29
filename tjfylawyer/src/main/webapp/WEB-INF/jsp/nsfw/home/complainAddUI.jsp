@@ -62,6 +62,28 @@
 			$("#toCompName").empty();
 		}
 	}
+	
+	//提交表单
+    	function doSubmit(){
+    		//1、提交表单并保存
+			$.ajax({
+				url:"${basePath}sys/home_complainAdd.do",
+				data:$("#form").serialize(),
+				type:"post",
+				async: false,
+				success: function(msg){
+					if("success" == msg.msg){
+						//2、提示用户投诉成功
+						alert("投诉成功！");
+			    		//3、刷新父窗口
+						window.opener.parent.location.reload(true);
+			    		//4、关闭当前窗口
+			    		window.close();
+					} else {alert("投诉失败！");}
+				},
+				error: function(){alert("投诉失败！");}
+			});
+    	}
 </script>
 
 </head>
@@ -117,11 +139,13 @@
 								<input type="radio" name="complain.isNm" id="comp_isNm1" value="1"><label
 								for="comp_isNm1">匿名投诉</label></td>
 						</tr>
-
+						<input type="text" hidden="true"  name="complain.compCompany" value="${sessionScope.SYS_USER.dept}"/>
+						<input type="text" hidden="true"  name="complain.compName" value="${sessionScope.SYS_USER.name}"/>
+						<input type="text" hidden="true"  name="complain.compMobile" value="${sessionScope.SYS_USER.mobile}"/>
 					</table>
 
 					<div class="tc mt20">
-						<input type="button" class="btnB2" value="保存" />
+						<input type="button" class="btnB2" value="保存" onclick="doSubmit()"/>
 						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
 							onclick="javascript:window.close()" class="btnB2" value="关闭" />
 					</div>

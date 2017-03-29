@@ -2,6 +2,7 @@ package software.lawyer.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import software.lawyer.data.dataobject.Complain;
 import software.lawyer.data.dataobject.PageResult;
@@ -30,4 +31,12 @@ public interface ComplainService {
 	public PageResult getPageResult(QueryHelper queryHelper, int pageNo,
 			int pageSize);
 
+	// 自动受理投诉
+	public void autoDeal();
+	/**
+	 * 根据年份获取统计年度的每个月的投诉数
+	 * @param year 要统计的年份
+	 * @return 统计数据
+	 */
+	public List<Map> getAnnualStatisticDataByYear(int year);
 }

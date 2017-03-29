@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> 
+	<beans default-lazy-init="false"> 
+	<bean id="complainDao" class="software.lawyer.data.dao.impl.ComplainDaoImpl" parent="baseDao"></bean>
+  	<bean id="testJob" class="software.lawyer.service.impl.ComplainServiceImpl"></bean>
+  	<!-- 设置执行任务中的方法 --> 
+  	<bean id="testTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="testJob"></property>
+		<property name="targetMethod" value="autoDeal"></property>
+		<property name="concurrent" value="true"></property>
+	</bean>
+	
+	<bean id="testTrigger" 
+		class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail"> 
+			<ref local="testTask" /> 
+		</property> 
+		<property name="cronExpression"> 
+	<!-- 服务启动n秒后执行  1000*n--> 
+			<value>0 * 19 * * ?</value> 
+			<!-- <value>0 00 23 * * ? *</value> -->
+		</property> 
+	</bean>
+	
+	
+	<!-- 容器：将触发器注册进来 --> 
+	<bean id="scheduler" 
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean"> 
+		<property name="triggers"> 
+	<!-- 注册触发器(Trigger) --> 
+		<list> 
+	 		<ref bean="testTrigger"/>
+		</list> 
+		</property> 
+	</bean> 
+</beans>
